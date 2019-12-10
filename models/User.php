@@ -363,7 +363,13 @@ class User extends ActiveRecord implements IdentityInterface
         $this->name = 'nn-' . str_pad(mt_rand(0, 999999), 6, '0', STR_PAD_LEFT); // 'nn-' plus six digits
         $this->auth_key = null;
         $this->password_hash = null;
-        $this->email = mt_rand(0, 999999).'@'.mt_rand(0, 999999).'.com';
+        /*  Some SQL servers, like MS SQL Server, are not compatible with ANSI standards, and don't allow multiple NULL-values
+            in UNIQUE records. Therefore email gets a random value, conforming to the email-format.
+            With mySQL, email could simply be set to null.
+            Thanks to duocreator and Ross Addison.
+            @link https://stackoverflow.com/a/767702/4270194
+        */
+        $this->email = "$unique@$unique.com";
         $this->deleted_at = new Expression('NOW()');
         $r = $this->save();
 
