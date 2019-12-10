@@ -360,7 +360,8 @@ class User extends ActiveRecord implements IdentityInterface
         }
         $this->scenario = 'delete';
         $this->status = self::STATUS_DELETED;
-        $this->name = 'nn-' . str_pad(mt_rand(0, 999999), 6, '0', STR_PAD_LEFT); // 'nn-' plus six digits
+        $unique = str_pad(mt_rand(0, 999999), 6, '0', STR_PAD_LEFT); // six digits
+        $this->name = 'nn-' . $unique;
         $this->auth_key = null;
         $this->password_hash = null;
         /*  Some SQL servers, like MS SQL Server, are not compatible with ANSI standards, and don't allow multiple NULL-values
