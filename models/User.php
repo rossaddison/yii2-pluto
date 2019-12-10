@@ -480,4 +480,9 @@ class User extends ActiveRecord implements IdentityInterface
         if (! $prClass) return null;
         return $prClass::findOne($this->id);
     }
+
+    public function getUsername()
+    {
+        return $this->name;
+    }
 }
