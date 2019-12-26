@@ -125,7 +125,7 @@ class DefaultController extends Controller
                 'appname' => Yii::$app->name
             ]), 'confirm')) {
                 Yii::$app->session->setFlash('success',
-                    Yii::t('pluto', 'Thank you for registration. Please check your inbox for verification email.'));
+                    Yii::t('pluto', 'Thank you for registering. Please check your inbox for a verification email.'));
                 return $this->goHome();
             }
         }
